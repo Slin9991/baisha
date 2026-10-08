@@ -19,6 +19,59 @@
     <link rel="stylesheet" href="styles.css">
     <script src="language.js" defer>
     </script>
+    <!-- 房型輪播樣式：內嵌於本檔，更新 index.html 即可使用。 -->
+    <style>
+      .room-carousel { min-width: 0; }
+      .room-carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+        aspect-ratio: 3 / 2;
+      }
+      .room-carousel-track img {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        object-fit: cover;
+        scroll-snap-align: start;
+      }
+      .room-carousel-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--line, #d5dfe0);
+      }
+      .room-carousel-controls[hidden] { display: none; }
+      .room-carousel-controls button {
+        min-height: 44px;
+        padding: 8px 12px;
+        border: 1px solid var(--line, #d5dfe0);
+        background: white;
+        color: var(--ink, #173e45);
+        font: inherit;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .room-carousel-controls button:hover {
+        background: var(--ink, #173e45);
+        color: white;
+      }
+      .room-carousel-controls button:focus-visible,
+      .room-carousel-track:focus-visible {
+        outline: 3px solid #ebad47;
+        outline-offset: -3px;
+      }
+      .photo-count { font-size: 14px; font-variant-numeric: tabular-nums; }
+      .room { min-width: 0; }
+      @media (min-width: 651px) and (max-width: 1000px) {
+        .room-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+    </style>
   </head>
   <body>
     <a class="skip" href="#main">
@@ -251,177 +304,92 @@
             </span>
           </p>
         </div>
-        <!-- The supplied photos show exterior spaces. Replace the three card images with room photographs when available. -->
+        <!-- 各房型照片為現有外觀暫用圖片，請換成對應的實際房型照片。 -->
         <div class="room-grid">
-          <article class="room">
-            <img
-              src="assets/villa-01.jpg"
-              alt="別墅泳池外觀；房型 1 的暫用照片"
-              data-en-alt="Villa pool exterior; placeholder image for Room Type 1"
-              data-zh-alt="別墅泳池外觀；房型 1 的暫用照片"
-              loading="lazy"
-            >
-            <div class="room-content">
-              <p class="eyebrow">
-                <span
-                  data-en="[Room Type 01]"
-                  data-zh="[房型 01]"
-                >
-                  [房型 01]
-                </span>
-              </p>
-              <h3>
-                <span
-                  data-en="[Room Name]"
-                  data-zh="[房型名稱]"
-                >
-                  [房型名稱]
-                </span>
-              </h3>
-              <p>
-                <span
-                  data-en="[Describe this room, its atmosphere, main features and view.]"
-                  data-zh="[請介紹此房型的氛圍、主要設施與景觀。]"
-                >
-                  [請介紹此房型的氛圍、主要設施與景觀。]
-                </span>
-              </p>
-              <ul>
-                <li>
+          <!-- 房型 1：全館包棟 / Entire Property Buyout -->
+          <article class="room" aria-labelledby="room-1-title">
+            <div class="room-carousel" role="group" aria-labelledby="room-1-title">
+              <!-- 每個輪播可放 3–5 張照片：複製下方 img 區塊即可新增，計數會自動更新。 -->
+              <div class="room-carousel-track" id="room-1-photos" tabindex="0"
+                aria-label="房型照片，可左右滑動"
+                data-en-aria-label="Room photos; swipe or use left and right arrow keys"
+                data-zh-aria-label="房型照片，可左右滑動或使用左右方向鍵">
+              <!-- 照片 1：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-07.jpg"
+                alt="全館包棟：別墅外觀暫用照片 1"
+                data-en-alt="Entire Property Buyout: villa exterior placeholder photo 1"
+                data-zh-alt="全館包棟：別墅外觀暫用照片 1"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 2：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-06.jpg"
+                alt="全館包棟：別墅外觀暫用照片 2"
+                data-en-alt="Entire Property Buyout: villa exterior placeholder photo 2"
+                data-zh-alt="全館包棟：別墅外觀暫用照片 2"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 3：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-10.jpg"
+                alt="全館包棟：別墅外觀暫用照片 3"
+                data-en-alt="Entire Property Buyout: villa exterior placeholder photo 3"
+                data-zh-alt="全館包棟：別墅外觀暫用照片 3"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              </div>
+              <div class="room-carousel-controls" hidden>
+                <button type="button" class="photo-prev" aria-controls="room-1-photos">
                   <span
-                    data-en="[2 guests]"
-                    data-zh="[2 位旅客]"
+                    data-en="Previous"
+                    data-zh="上一張"
                   >
-                    [2 位旅客]
+                    上一張
                   </span>
-                </li>
-                <li>
-                  <span
-                    data-en="[1 king bed]"
-                    data-zh="[1 張特大雙人床]"
-                  >
-                    [1 張特大雙人床]
-                  </span>
-                </li>
-                <li>
-                  <span
-                    data-en="[Room size: XX m²]"
-                    data-zh="[房間面積：XX 平方公尺]"
-                  >
-                    [房間面積：XX 平方公尺]
-                  </span>
-                </li>
-              </ul>
-              <a href="#contact">
-                <span
-                  data-en="Enquire about this room"
-                  data-zh="洽詢此房型"
-                >
-                  洽詢此房型
+                </button>
+                <span class="photo-count" aria-live="polite" aria-atomic="true">
+                  1 / 3
                 </span>
-              </a>
+                <button type="button" class="photo-next" aria-controls="room-1-photos">
+                  <span
+                    data-en="Next"
+                    data-zh="下一張"
+                  >
+                    下一張
+                  </span>
+                </button>
+              </div>
             </div>
-          </article>
-          <article class="room">
-            <img
-              src="assets/villa-03.jpg"
-              alt="別墅戶外休憩區；房型 2 的暫用照片"
-              data-en-alt="Villa outdoor lounge; placeholder image for Room Type 2"
-              data-zh-alt="別墅戶外休憩區；房型 2 的暫用照片"
-              loading="lazy"
-            >
             <div class="room-content">
               <p class="eyebrow">
                 <span
-                  data-en="[Room Type 02]"
-                  data-zh="[房型 02]"
+                  data-en="Room Type 01"
+                  data-zh="房型 01"
                 >
-                  [房型 02]
+                  房型 01
                 </span>
               </p>
-              <h3>
+              <h3 id="room-1-title">
                 <span
-                  data-en="[Room Name]"
-                  data-zh="[房型名稱]"
+                  data-en="Entire Property Buyout"
+                  data-zh="全館包棟"
                 >
-                  [房型名稱]
+                  全館包棟
                 </span>
               </h3>
               <p>
                 <span
-                  data-en="[Describe this room, its atmosphere, main features and view.]"
-                  data-zh="[請介紹此房型的氛圍、主要設施與景觀。]"
+                  data-en="[Describe this room type, its facilities and booking arrangements.]"
+                  data-zh="[請填寫全館包棟的介紹、設施與訂房方式。]"
                 >
-                  [請介紹此房型的氛圍、主要設施與景觀。]
-                </span>
-              </p>
-              <ul>
-                <li>
-                  <span
-                    data-en="[4 guests]"
-                    data-zh="[4 位旅客]"
-                  >
-                    [4 位旅客]
-                  </span>
-                </li>
-                <li>
-                  <span
-                    data-en="[2 double beds]"
-                    data-zh="[2 張雙人床]"
-                  >
-                    [2 張雙人床]
-                  </span>
-                </li>
-                <li>
-                  <span
-                    data-en="[Room size: XX m²]"
-                    data-zh="[房間面積：XX 平方公尺]"
-                  >
-                    [房間面積：XX 平方公尺]
-                  </span>
-                </li>
-              </ul>
-              <a href="#contact">
-                <span
-                  data-en="Enquire about this room"
-                  data-zh="洽詢此房型"
-                >
-                  洽詢此房型
-                </span>
-              </a>
-            </div>
-          </article>
-          <article class="room">
-            <img
-              src="assets/villa-08.jpg"
-              alt="泳池俯瞰景觀；房型 3 的暫用照片"
-              data-en-alt="Overhead view of the pool; placeholder image for Room Type 3"
-              data-zh-alt="泳池俯瞰景觀；房型 3 的暫用照片"
-              loading="lazy"
-            >
-            <div class="room-content">
-              <p class="eyebrow">
-                <span
-                  data-en="[Room Type 03]"
-                  data-zh="[房型 03]"
-                >
-                  [房型 03]
-                </span>
-              </p>
-              <h3>
-                <span
-                  data-en="[Room Name / Entire Villa]"
-                  data-zh="[房型名稱／整棟別墅]"
-                >
-                  [房型名稱／整棟別墅]
-                </span>
-              </h3>
-              <p>
-                <span
-                  data-en="[Describe this accommodation option, its features and ideal group size.]"
-                  data-zh="[請介紹此住宿方案的特色，以及適合的團體人數。]"
-                >
-                  [請介紹此住宿方案的特色，以及適合的團體人數。]
+                  [請填寫全館包棟的介紹、設施與訂房方式。]
                 </span>
               </p>
               <ul>
@@ -435,18 +403,510 @@
                 </li>
                 <li>
                   <span
-                    data-en="[XX bedrooms]"
-                    data-zh="[XX 間臥室]"
+                    data-en="[Bed / bedroom configuration]"
+                    data-zh="[床型／臥室配置]"
                   >
-                    [XX 間臥室]
+                    [床型／臥室配置]
                   </span>
                 </li>
                 <li>
                   <span
-                    data-en="[Villa size: XX m²]"
-                    data-zh="[別墅面積：XX 平方公尺]"
+                    data-en="[Size: XX m²]"
+                    data-zh="[面積：XX 平方公尺]"
                   >
-                    [別墅面積：XX 平方公尺]
+                    [面積：XX 平方公尺]
+                  </span>
+                </li>
+              </ul>
+              <a href="#contact">
+                <span
+                  data-en="Enquire about this room"
+                  data-zh="洽詢此房型"
+                >
+                  洽詢此房型
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 房型 2：Villa包棟 / Private Villa Buyout -->
+          <article class="room" aria-labelledby="room-2-title">
+            <div class="room-carousel" role="group" aria-labelledby="room-2-title">
+              <!-- 每個輪播可放 3–5 張照片：複製下方 img 區塊即可新增，計數會自動更新。 -->
+              <div class="room-carousel-track" id="room-2-photos" tabindex="0"
+                aria-label="房型照片，可左右滑動"
+                data-en-aria-label="Room photos; swipe or use left and right arrow keys"
+                data-zh-aria-label="房型照片，可左右滑動或使用左右方向鍵">
+              <!-- 照片 1：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-01.jpg"
+                alt="Villa包棟：別墅外觀暫用照片 1"
+                data-en-alt="Private Villa Buyout: villa exterior placeholder photo 1"
+                data-zh-alt="Villa包棟：別墅外觀暫用照片 1"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 2：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-03.jpg"
+                alt="Villa包棟：別墅外觀暫用照片 2"
+                data-en-alt="Private Villa Buyout: villa exterior placeholder photo 2"
+                data-zh-alt="Villa包棟：別墅外觀暫用照片 2"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 3：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-04.jpg"
+                alt="Villa包棟：別墅外觀暫用照片 3"
+                data-en-alt="Private Villa Buyout: villa exterior placeholder photo 3"
+                data-zh-alt="Villa包棟：別墅外觀暫用照片 3"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              </div>
+              <div class="room-carousel-controls" hidden>
+                <button type="button" class="photo-prev" aria-controls="room-2-photos">
+                  <span
+                    data-en="Previous"
+                    data-zh="上一張"
+                  >
+                    上一張
+                  </span>
+                </button>
+                <span class="photo-count" aria-live="polite" aria-atomic="true">
+                  1 / 3
+                </span>
+                <button type="button" class="photo-next" aria-controls="room-2-photos">
+                  <span
+                    data-en="Next"
+                    data-zh="下一張"
+                  >
+                    下一張
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="room-content">
+              <p class="eyebrow">
+                <span
+                  data-en="Room Type 02"
+                  data-zh="房型 02"
+                >
+                  房型 02
+                </span>
+              </p>
+              <h3 id="room-2-title">
+                <span
+                  data-en="Private Villa Buyout"
+                  data-zh="Villa包棟"
+                >
+                  Villa包棟
+                </span>
+              </h3>
+              <p>
+                <span
+                  data-en="[Describe this room type, its facilities and booking arrangements.]"
+                  data-zh="[請填寫Villa包棟的介紹、設施與訂房方式。]"
+                >
+                  [請填寫Villa包棟的介紹、設施與訂房方式。]
+                </span>
+              </p>
+              <ul>
+                <li>
+                  <span
+                    data-en="[XX guests]"
+                    data-zh="[XX 位旅客]"
+                  >
+                    [XX 位旅客]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Bed / bedroom configuration]"
+                    data-zh="[床型／臥室配置]"
+                  >
+                    [床型／臥室配置]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Size: XX m²]"
+                    data-zh="[面積：XX 平方公尺]"
+                  >
+                    [面積：XX 平方公尺]
+                  </span>
+                </li>
+              </ul>
+              <a href="#contact">
+                <span
+                  data-en="Enquire about this room"
+                  data-zh="洽詢此房型"
+                >
+                  洽詢此房型
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 房型 3：Villa小包棟 / Small-Group Villa Buyout -->
+          <article class="room" aria-labelledby="room-3-title">
+            <div class="room-carousel" role="group" aria-labelledby="room-3-title">
+              <!-- 每個輪播可放 3–5 張照片：複製下方 img 區塊即可新增，計數會自動更新。 -->
+              <div class="room-carousel-track" id="room-3-photos" tabindex="0"
+                aria-label="房型照片，可左右滑動"
+                data-en-aria-label="Room photos; swipe or use left and right arrow keys"
+                data-zh-aria-label="房型照片，可左右滑動或使用左右方向鍵">
+              <!-- 照片 1：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-03.jpg"
+                alt="Villa小包棟：別墅外觀暫用照片 1"
+                data-en-alt="Small-Group Villa Buyout: villa exterior placeholder photo 1"
+                data-zh-alt="Villa小包棟：別墅外觀暫用照片 1"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 2：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-02.jpg"
+                alt="Villa小包棟：別墅外觀暫用照片 2"
+                data-en-alt="Small-Group Villa Buyout: villa exterior placeholder photo 2"
+                data-zh-alt="Villa小包棟：別墅外觀暫用照片 2"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 3：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-05.jpg"
+                alt="Villa小包棟：別墅外觀暫用照片 3"
+                data-en-alt="Small-Group Villa Buyout: villa exterior placeholder photo 3"
+                data-zh-alt="Villa小包棟：別墅外觀暫用照片 3"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              </div>
+              <div class="room-carousel-controls" hidden>
+                <button type="button" class="photo-prev" aria-controls="room-3-photos">
+                  <span
+                    data-en="Previous"
+                    data-zh="上一張"
+                  >
+                    上一張
+                  </span>
+                </button>
+                <span class="photo-count" aria-live="polite" aria-atomic="true">
+                  1 / 3
+                </span>
+                <button type="button" class="photo-next" aria-controls="room-3-photos">
+                  <span
+                    data-en="Next"
+                    data-zh="下一張"
+                  >
+                    下一張
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="room-content">
+              <p class="eyebrow">
+                <span
+                  data-en="Room Type 03"
+                  data-zh="房型 03"
+                >
+                  房型 03
+                </span>
+              </p>
+              <h3 id="room-3-title">
+                <span
+                  data-en="Small-Group Villa Buyout"
+                  data-zh="Villa小包棟"
+                >
+                  Villa小包棟
+                </span>
+              </h3>
+              <p>
+                <span
+                  data-en="[Describe this room type, its facilities and booking arrangements.]"
+                  data-zh="[請填寫Villa小包棟的介紹、設施與訂房方式。]"
+                >
+                  [請填寫Villa小包棟的介紹、設施與訂房方式。]
+                </span>
+              </p>
+              <ul>
+                <li>
+                  <span
+                    data-en="[XX guests]"
+                    data-zh="[XX 位旅客]"
+                  >
+                    [XX 位旅客]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Bed / bedroom configuration]"
+                    data-zh="[床型／臥室配置]"
+                  >
+                    [床型／臥室配置]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Size: XX m²]"
+                    data-zh="[面積：XX 平方公尺]"
+                  >
+                    [面積：XX 平方公尺]
+                  </span>
+                </li>
+              </ul>
+              <a href="#contact">
+                <span
+                  data-en="Enquire about this room"
+                  data-zh="洽詢此房型"
+                >
+                  洽詢此房型
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 房型 4：泳池景觀雙房 / Pool View Two-Room Stay -->
+          <article class="room" aria-labelledby="room-4-title">
+            <div class="room-carousel" role="group" aria-labelledby="room-4-title">
+              <!-- 每個輪播可放 3–5 張照片：複製下方 img 區塊即可新增，計數會自動更新。 -->
+              <div class="room-carousel-track" id="room-4-photos" tabindex="0"
+                aria-label="房型照片，可左右滑動"
+                data-en-aria-label="Room photos; swipe or use left and right arrow keys"
+                data-zh-aria-label="房型照片，可左右滑動或使用左右方向鍵">
+              <!-- 照片 1：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-08.jpg"
+                alt="泳池景觀雙房：別墅外觀暫用照片 1"
+                data-en-alt="Pool View Two-Room Stay: villa exterior placeholder photo 1"
+                data-zh-alt="泳池景觀雙房：別墅外觀暫用照片 1"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 2：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-01.jpg"
+                alt="泳池景觀雙房：別墅外觀暫用照片 2"
+                data-en-alt="Pool View Two-Room Stay: villa exterior placeholder photo 2"
+                data-zh-alt="泳池景觀雙房：別墅外觀暫用照片 2"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 3：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-04.jpg"
+                alt="泳池景觀雙房：別墅外觀暫用照片 3"
+                data-en-alt="Pool View Two-Room Stay: villa exterior placeholder photo 3"
+                data-zh-alt="泳池景觀雙房：別墅外觀暫用照片 3"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              </div>
+              <div class="room-carousel-controls" hidden>
+                <button type="button" class="photo-prev" aria-controls="room-4-photos">
+                  <span
+                    data-en="Previous"
+                    data-zh="上一張"
+                  >
+                    上一張
+                  </span>
+                </button>
+                <span class="photo-count" aria-live="polite" aria-atomic="true">
+                  1 / 3
+                </span>
+                <button type="button" class="photo-next" aria-controls="room-4-photos">
+                  <span
+                    data-en="Next"
+                    data-zh="下一張"
+                  >
+                    下一張
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="room-content">
+              <p class="eyebrow">
+                <span
+                  data-en="Room Type 04"
+                  data-zh="房型 04"
+                >
+                  房型 04
+                </span>
+              </p>
+              <h3 id="room-4-title">
+                <span
+                  data-en="Pool View Two-Room Stay"
+                  data-zh="泳池景觀雙房"
+                >
+                  泳池景觀雙房
+                </span>
+              </h3>
+              <p>
+                <span
+                  data-en="[Describe this room type, its facilities and booking arrangements.]"
+                  data-zh="[請填寫泳池景觀雙房的介紹、設施與訂房方式。]"
+                >
+                  [請填寫泳池景觀雙房的介紹、設施與訂房方式。]
+                </span>
+              </p>
+              <ul>
+                <li>
+                  <span
+                    data-en="[XX guests]"
+                    data-zh="[XX 位旅客]"
+                  >
+                    [XX 位旅客]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Bed / bedroom configuration]"
+                    data-zh="[床型／臥室配置]"
+                  >
+                    [床型／臥室配置]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Size: XX m²]"
+                    data-zh="[面積：XX 平方公尺]"
+                  >
+                    [面積：XX 平方公尺]
+                  </span>
+                </li>
+              </ul>
+              <a href="#contact">
+                <span
+                  data-en="Enquire about this room"
+                  data-zh="洽詢此房型"
+                >
+                  洽詢此房型
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 房型 5：海景樓中樓雙房 / Sea View Duplex Two-Room Stay -->
+          <article class="room" aria-labelledby="room-5-title">
+            <div class="room-carousel" role="group" aria-labelledby="room-5-title">
+              <!-- 每個輪播可放 3–5 張照片：複製下方 img 區塊即可新增，計數會自動更新。 -->
+              <div class="room-carousel-track" id="room-5-photos" tabindex="0"
+                aria-label="房型照片，可左右滑動"
+                data-en-aria-label="Room photos; swipe or use left and right arrow keys"
+                data-zh-aria-label="房型照片，可左右滑動或使用左右方向鍵">
+              <!-- 照片 1：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-09.jpg"
+                alt="海景樓中樓雙房：別墅外觀暫用照片 1"
+                data-en-alt="Sea View Duplex Two-Room Stay: villa exterior placeholder photo 1"
+                data-zh-alt="海景樓中樓雙房：別墅外觀暫用照片 1"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 2：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-07.jpg"
+                alt="海景樓中樓雙房：別墅外觀暫用照片 2"
+                data-en-alt="Sea View Duplex Two-Room Stay: villa exterior placeholder photo 2"
+                data-zh-alt="海景樓中樓雙房：別墅外觀暫用照片 2"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              <!-- 照片 3：替換 src 路徑及中英文 alt；此處為別墅外觀暫用照片。 -->
+              <img
+                src="assets/villa-10.jpg"
+                alt="海景樓中樓雙房：別墅外觀暫用照片 3"
+                data-en-alt="Sea View Duplex Two-Room Stay: villa exterior placeholder photo 3"
+                data-zh-alt="海景樓中樓雙房：別墅外觀暫用照片 3"
+                loading="lazy"
+                width="1200"
+                height="800"
+              >
+              </div>
+              <div class="room-carousel-controls" hidden>
+                <button type="button" class="photo-prev" aria-controls="room-5-photos">
+                  <span
+                    data-en="Previous"
+                    data-zh="上一張"
+                  >
+                    上一張
+                  </span>
+                </button>
+                <span class="photo-count" aria-live="polite" aria-atomic="true">
+                  1 / 3
+                </span>
+                <button type="button" class="photo-next" aria-controls="room-5-photos">
+                  <span
+                    data-en="Next"
+                    data-zh="下一張"
+                  >
+                    下一張
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="room-content">
+              <p class="eyebrow">
+                <span
+                  data-en="Room Type 05"
+                  data-zh="房型 05"
+                >
+                  房型 05
+                </span>
+              </p>
+              <h3 id="room-5-title">
+                <span
+                  data-en="Sea View Duplex Two-Room Stay"
+                  data-zh="海景樓中樓雙房"
+                >
+                  海景樓中樓雙房
+                </span>
+              </h3>
+              <p>
+                <span
+                  data-en="[Describe this room type, its facilities and booking arrangements.]"
+                  data-zh="[請填寫海景樓中樓雙房的介紹、設施與訂房方式。]"
+                >
+                  [請填寫海景樓中樓雙房的介紹、設施與訂房方式。]
+                </span>
+              </p>
+              <ul>
+                <li>
+                  <span
+                    data-en="[XX guests]"
+                    data-zh="[XX 位旅客]"
+                  >
+                    [XX 位旅客]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Bed / bedroom configuration]"
+                    data-zh="[床型／臥室配置]"
+                  >
+                    [床型／臥室配置]
+                  </span>
+                </li>
+                <li>
+                  <span
+                    data-en="[Size: XX m²]"
+                    data-zh="[面積：XX 平方公尺]"
+                  >
+                    [面積：XX 平方公尺]
                   </span>
                 </li>
               </ul>
@@ -558,10 +1018,10 @@
             </dt>
             <dd>
               <span
-                data-en="[Your email address]"
-                data-zh="[您的電子郵件地址]"
+                data-en="baisha.3636@gmail.com"
+                data-zh="baisha.3636@gmail.com"
               >
-                [您的電子郵件地址]
+                baisha.3636@gmail.com
               </span>
             </dd>
           </div>
@@ -594,10 +1054,10 @@
             </dt>
             <dd>
               <span
-                data-en="[Your LINE ID or social handle]"
-                data-zh="[您的 LINE ID 或社群帳號]"
+                data-en="@baisha36"
+                data-zh="@baisha36"
               >
-                [您的 LINE ID 或社群帳號]
+                @baisha36
               </span>
             </dd>
           </div>
@@ -612,10 +1072,10 @@
             </dt>
             <dd>
               <span
-                data-en="[Your villa address]"
-                data-zh="[您的別墅地址]"
+                data-en="屏東縣恆春鎮白砂路36號"
+                data-zh="屏東縣恆春鎮白砂路36號"
               >
-                [您的別墅地址]
+                屏東縣恆春鎮白砂路36號
               </span>
             </dd>
           </div>
@@ -630,10 +1090,10 @@
             </dt>
             <dd>
               <span
-                data-en="[Check-in time] / [Check-out time]"
-                data-zh="[入住時間]／[退房時間]"
+                data-en="Check-in time 3PM/Check-out time 11AM"
+                data-zh="入住時間 3PM／退房時間 11AM"
               >
-                [入住時間]／[退房時間]
+                入住時間 3PM／退房時間 11AM
               </span>
             </dd>
           </div>
@@ -652,10 +1112,10 @@
       </a>
       <p>
         <span
-          data-en="© [Year] Baisha36. All rights reserved."
-          data-zh="© [年份] Baisha36。版權所有。"
+          data-en="© [2026] Baisha36. All rights reserved."
+          data-zh="© [2026] Baisha36。版權所有。"
         >
-          © [年份] Baisha36。版權所有。
+          © [2026] Baisha36。版權所有。
         </span>
       </p>
       <a href="#home">
@@ -667,5 +1127,57 @@
         </span>
       </a>
     </footer>
+    <!-- 輪播行為：每個房型獨立切換，支援按鈕、鍵盤與觸控滑動。 -->
+    <script>
+      (() => {
+        document.querySelectorAll('.room-carousel').forEach(carousel => {
+          const track = carousel.querySelector('.room-carousel-track');
+          const photos = [...track.querySelectorAll('img')];
+          const controls = carousel.querySelector('.room-carousel-controls');
+          const counter = carousel.querySelector('.photo-count');
+          const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+          let index = 0;
+          let targetIndex = 0;
+          let moving = false;
+          let settleTimer;
+
+          const currentIndex = () => Math.max(0, Math.min(photos.length - 1,
+            Math.round(track.scrollLeft / Math.max(1, track.clientWidth))));
+          const updateCounter = () => {
+            index = currentIndex();
+            counter.textContent = `${index + 1} / ${photos.length}`;
+          };
+          const go = step => {
+            targetIndex = ((moving ? targetIndex : currentIndex()) + step + photos.length) % photos.length;
+            moving = true;
+            track.scrollTo({
+              left: targetIndex * track.clientWidth,
+              behavior: reducedMotion.matches ? 'instant' : 'smooth'
+            });
+          };
+
+          controls.hidden = photos.length < 2;
+          carousel.querySelector('.photo-prev').addEventListener('click', () => go(-1));
+          carousel.querySelector('.photo-next').addEventListener('click', () => go(1));
+          track.addEventListener('keydown', event => {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+              event.preventDefault();
+              go(event.key === 'ArrowLeft' ? -1 : 1);
+            }
+          });
+          track.addEventListener('pointerdown', () => { moving = false; });
+          track.addEventListener('scroll', () => {
+            updateCounter();
+            clearTimeout(settleTimer);
+            settleTimer = setTimeout(() => { moving = false; }, 150);
+          }, { passive: true });
+          window.addEventListener('resize', () => {
+            track.scrollTo({ left: index * track.clientWidth, behavior: 'instant' });
+            moving = false;
+          });
+          updateCounter();
+        });
+      })();
+    </script>
   </body>
 </html>
