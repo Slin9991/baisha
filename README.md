@@ -23,3 +23,12 @@ All asset links are relative, so the website works at both a custom domain and a
 - `styles.css`: colors, typography and responsive layout
 - `assets/`: optimized photographs with portable filenames
 - `photo-map.json`: source filename reference
+
+## English / Traditional Chinese
+The header language button switches all text, image descriptions, accessibility labels, page title and description. Traditional Chinese is the default; the selected language is remembered in the visitor's browser when storage is available. If JavaScript is unavailable, Traditional Chinese remains readable.
+
+To update content, edit BOTH `data-en="English text"` and `data-zh="繁體中文文字"` on the relevant element in `index.html`. Also update the text between the tags to match Traditional Chinese for the no-JavaScript fallback. For image descriptions, edit `data-en-alt`, `data-zh-alt` and `alt`. The visible placeholders remain in square brackets in both languages. This is manual bilingual content, not automatic translation.
+
+Upload `index.html`, `styles.css` AND `language.js` to the repository root to install this update. Existing photos do not need to be uploaded again. Keep your GitHub workflow and domain settings.
+
+The brand is Baisha36 in both languages. The location is Kenting / 墾丁. HTML uses indented lines, section comments, and separate data-en / data-zh attributes for easy editing. Returning visitors retain their previously selected language.

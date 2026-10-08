@@ -2,8 +2,11 @@
 (() => {
   const button = document.getElementById('language-toggle');
   const key = 'baisha-villa-language';
-  let language = 'en';
-  try { if (localStorage.getItem(key) === 'zh') language = 'zh'; } catch (_) {}
+  let language = 'zh';
+  try {
+    const saved = localStorage.getItem(key);
+    if (saved === 'en' || saved === 'zh') language = saved;
+  } catch (_) {}
   function applyLanguage() {
     document.documentElement.lang = language === 'zh' ? 'zh-Hant' : 'en';
     document.querySelectorAll('[data-en][data-zh]').forEach(element => {
